@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buying Time Comic by Casey J</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      --accent: #EC1163;
+      --accent-fg: #fff;
+    }
+
+    body {
+      min-height: 100%;
+      min-width: 100%;
+      background-color: #000;
+      padding: 0;
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    .original {
+      display: block;
+      padding: 10px 0;
+      background-color: var(--accent);
+      color: var(--accent-fg);
+      text-align: center;
+      font-size: 2rem;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    nav button, nav select {
+      margin: 0 1rem;
+    }
+
+    img#logo {
+      display: block;
+      margin: 0 auto;
+      font-size: 0;
+      height: 100px;
+    }
+
+    #chapterView, #media {
+      display: block;
+      margin: 0 auto 2rem;
+      width: 850px;
+      height: 850px;
+    }
+
+    #chapterView {
+      margin-bottom: 3rem;
+    }
+
+  </style>
+  <script src="{{base_dir}}ruffle.js"></script>
+  <script>
+    window.baseDir = "{{base_dir}}"
+  </script>
+</head>
+<body>
+  <div>
+    <img id="logo" src="{{base_dir}}bt_banner.png" alt="Buying Time Banner">
+  </div>
+  <nav>
+    <button id="first">First</button>
+    <button id="previous">Previous</button>
+    <select id="chapterSelector">
+      {% for ch in chapters %}
+        <option value="{{ch[0]}}">{{ch[1]}}</option>
+      {% endfor %} 
+    </select>
+    <button id="next">Next</button>
+    <button id="last">Last</button>
+  </nav>
+  <div id="chapterView">
+    <!-- This is modified by JS -->
+  </div>
+  <div>
+    <a class="original" href="http://buyingtime.webcomic.ws">Visit the original website</a>
+  </div>
+  <script src="main.js"></script>
+</body>
+
+</html>

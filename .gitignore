@@ -1,0 +1,4 @@
+public/index.html
+public/chapters/*
+!public/chapters/.gitkeep
+vendor/bundle
