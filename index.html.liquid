@@ -21,9 +21,10 @@
       font-family: sans-serif;
     }
 
-    .original {
+    #original {
       display: block;
       padding: 10px 0;
+      margin-top: 1rem;
       background-color: var(--accent);
       color: var(--accent-fg);
       text-align: center;
@@ -49,13 +50,14 @@
 
     #chapterView, #media {
       display: block;
-      margin: 0 auto 2rem;
+      margin: 0.5rem auto;
       width: 850px;
       height: 850px;
     }
 
-    #chapterView {
-      margin-bottom: 3rem;
+    #legend {
+      color: #fff;
+      text-align: center;
     }
 
   </style>
@@ -82,8 +84,16 @@
   <div id="chapterView">
     <!-- This is modified by JS -->
   </div>
+  <div id="legend">
+    Keyboard controls: 
+    <b>→</b> next frame |
+    <b>←</b> previous frame |
+    <b>↑</b> next page/chapter |
+    <b>↓</b> previous page/chapter |
+    <b>Space</b> fullscreen
+  </div>
   <div>
-    <a class="original" href="http://buyingtime.webcomic.ws">Visit the original website</a>
+    <a id="original" href="http://buyingtime.webcomic.ws">Visit the original website</a>
   </div>
   <script src="main.js"></script>
 </body>
