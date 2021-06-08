@@ -3,6 +3,18 @@
  */
 const chapterType = (chapter) => chapter.split(".").pop();
 
+const player = window.RufflePlayer.newest().createPlayer();
+player.backgroundColor = "#000000";
+player.id = "media";
+
+const image = document.createElement("img");
+image.id = "media";
+image.src =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
+image.alt = "";
+
+window.wp = player;
+
 /**
  * @param chapter {string}
  */
@@ -13,21 +25,11 @@ function loadChapter(chapter) {
   document.getElementById("media")?.remove();
 
   if (chapterType(chapter) == "swf") {
-    const ruffle = window.RufflePlayer.newest();
-    const player = ruffle.createPlayer();
-    player.backgroundColor = "#000000";
-    player.id = "media";
-
     document.getElementById("chapterView").appendChild(player);
     player.load(media);
   } else {
-    let img = document.createElement("img");
-    img.id = "media";
-    img.src = media;
-    // Honestly doubt accessibility is a concern here lol
-    img.alt = "";
-
-    document.getElementById("chapterView").appendChild(img);
+    image.src = media;
+    document.getElementById("chapterView").appendChild(image);
   }
 }
 
@@ -94,13 +96,36 @@ function main() {
 
   document.addEventListener("keydown", (event) => {
     switch (event.code) {
-      case "ArrowLeft":
+      case "ArrowUp":
+        event.preventDefault();
         seekChapter("previous");
         break;
 
-      case "ArrowRight":
-      case "Space":
+      case "ArrowDown":
+        event.preventDefault();
         seekChapter("next");
+        break;
+
+      case "Space":
+        event.preventDefault();
+        player.enterFullscreen();
+
+      case "ArrowRight":
+        event.preventDefault();
+        if (!document.getElementById("chapterView").contains(player)) break;
+        player
+          .contextMenuItems()
+          .find((e) => e?.text == "Forward")
+          .onClick();
+        break;
+
+      case "ArrowLeft":
+        event.preventDefault();
+        if (!document.getElementById("chapterView").contains(player)) break;
+        player
+          .contextMenuItems()
+          .find((e) => e?.text == "Back")
+          .onClick();
         break;
 
       default:
