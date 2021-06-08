@@ -109,6 +109,7 @@ function main() {
       case "Space":
         event.preventDefault();
         player.enterFullscreen();
+        break;
 
       case "ArrowRight":
         event.preventDefault();
