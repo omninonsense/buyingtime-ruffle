@@ -20,3 +20,7 @@ task :build, [:base_dir] do |_task, args|
     file.write(template.render('chapters' => chapters, 'base_dir' => base_dir))
   end
 end
+
+task :preview do
+  ruby '-run', '-ehttpd', 'public', '-p8000'
+end
